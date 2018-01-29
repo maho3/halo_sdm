@@ -1,0 +1,9 @@
+#PBS -N halo_sdm_MDPL2_MLv
+#PBS -l nodes=1:ppn=16
+#PBS -j oe
+#PBS -o /home/mho1/jobs/
+#PBS -l walltime=168:00:00
+#PBS -q bigmem
+cd $PBS_O_WORKDIR
+
+python2 ~/scripts/halo_sdm/halo_sdm_MDPL2_MLv.py 

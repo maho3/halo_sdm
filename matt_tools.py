@@ -10,7 +10,7 @@ mpl.rcParams['figure.facecolor'] = (1,1,1,1)
 import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
 
-def histplot(X,n=10, label=None, log=True):
+def histplot(X,n=10, label=None, log=True, norm = False):
     if n=='auto':
         n = len(X)/1000
     
@@ -32,6 +32,9 @@ def histplot(X,n=10, label=None, log=True):
         x.append(i-increment/2)
         y.append(xbin)
 
+    if norm:
+        y = [i / float(len(X)) for i in y]
+        
     plt.plot(x, 
              y,
              label=label
@@ -80,7 +83,7 @@ def binnedplot(X,Y, n=10, percentiles = [15,50,85], mean=True, label='', ax = No
         else:
             ax.plot(x, y_percent[i],label=label+str(percentiles[i]))
 
-    return x,y,err
+    return x,y,y_percent, err
 
 def savefig(f, name, wdir, figsize=(3,3), xlabel='',ylabel='', title='', fontsize=11, tight = True):
     
